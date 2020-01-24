@@ -16,7 +16,7 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
 
-  DateTime _pickedDate = DateTime.now();
+  DateTime _pickedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class _DetailsState extends State<Details> {
                 LocationDescription(
                   title: widget.title,
                   image: widget.image,
-                  pickedDate: "${_pickedDate.year}-${_pickedDate.month}-${_pickedDate.day}",
+                  pickedDate: (_pickedDate == null)? "Not Picked": "${_pickedDate.year}-${_pickedDate.month}-${_pickedDate.day}",
                   description: widget.description,
                   location: widget.location,
                   topMargin: MediaQuery.of(context).size.height - 250,

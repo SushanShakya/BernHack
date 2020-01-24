@@ -45,16 +45,12 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text(
           isResort?"Resorts":"Picnic Spots",
-          style: TextStyle(fontSize: 26.0,color:Colors.black,fontFamily: 'mainFont'),),
+          style: TextStyle(fontSize: 30.0,color:Colors.black,fontFamily: 'mainFont'),),
         centerTitle: true,
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => Bookmarks()
-              ));
-            },
+            onPressed: () {},
             icon: Icon(Icons.book, color: Colors.black,),
           )
         ],
@@ -93,11 +89,12 @@ class _HomeState extends State<Home> {
 
   Widget _buildMainHead() {
     return Container(
+      width: 300,
       margin: EdgeInsets.fromLTRB(0.0, 0.0, 20.0, 20.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text("Choose Your Destination",style: TextStyle(fontSize: 24,color:Colors.black,fontFamily: 'mainFont'),),
+          Text("Choose Your Destination",style: TextStyle(fontSize: 30,color:Colors.black,fontFamily: 'mainFont'),),
           SizedBox(height: 20.0,),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -110,7 +107,8 @@ class _HomeState extends State<Home> {
                       _activeTag = picnicSpots;
                       isResort = false;
                     });
-                  }
+                  },
+                color: isResort?Colors.transparent:Colors.teal
               ),
               SizedBox(height: 20.0,),
               _makeButton(
@@ -121,7 +119,8 @@ class _HomeState extends State<Home> {
                       _activeTag = resorts;
                       isResort = true;
                     });
-                  }
+                  },
+                  color: isResort?Colors.teal:Colors.transparent
               ),
           SizedBox(height: 20.0,),
           FutureBuilder(
@@ -140,6 +139,7 @@ class _HomeState extends State<Home> {
                 return
                   (fish.length != 0)?
                   _makeButton(
+                    color: Colors.transparent,
                     image: 'bookmarks',
                     text: "#BookMarks",
                       onPressed: () {
@@ -157,6 +157,7 @@ class _HomeState extends State<Home> {
                   ):
                 _makeButton(
                   image: "bookmarks",
+                  color: Colors.transparent,
                   text: "#BookMarks",
                   onPressed: () {}
                 )
@@ -173,13 +174,17 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _makeButton({String image, String text, onPressed}) {
+  Widget _makeButton({String image, String text, onPressed, color}) {
     return MaterialButton(
+      color: color,
         onPressed: onPressed,
         child: Row(
           children: <Widget>[
             Image.asset('assets/images/$image.png', height: 70,width: 70,),
-            Text(text)
+            Text(text,
+            style: TextStyle(
+              fontSize: 24
+            ),)
           ],
         )
     );
@@ -244,19 +249,25 @@ class _HomeState extends State<Home> {
             ),
           ]
         ),
-        child: Center(
-          child: Container(
-            color: Colors.teal,
-            child: Text(
-              title,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 40,
-                color: Colors.white
-              ),
+        child:
+            Center(
+              child: Container(
+                padding: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.deepPurple
+                ),
+                  child: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+//                      fontFamily: 'complementaryFont',
+                      color: Colors.white
+                    ),
+                  ),
+                ),
             ),
-          ),
-        ),
       ),
     );
   }

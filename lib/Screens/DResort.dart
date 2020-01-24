@@ -20,7 +20,7 @@ class _ResortDescriptionState extends State<ResortDescription> {
 
   int _currentIndex = 0;
   final SwiperController _swiperController = SwiperController();
-  DateTime _pickedDate = DateTime.now();
+  DateTime _pickedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class _ResortDescriptionState extends State<ResortDescription> {
               title: "${widget.title}",
               description:"${widget.description}",
               image: widget.images[0],
-              pickedDate: "${_pickedDate.year}-${_pickedDate.month}-${_pickedDate.day}",
+              pickedDate: (_pickedDate == null)? "Not Picked": "${_pickedDate.year}-${_pickedDate.month}-${_pickedDate.day}",
               location: widget.location,
               topMargin: MediaQuery.of(context).size.height - 250,
             )

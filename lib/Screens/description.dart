@@ -109,12 +109,12 @@ class _LocationDescriptionState extends State<LocationDescription> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(widget.title, style: TextStyle(fontFamily: 'mainFont', fontSize: 26),),
+              Text(widget.title, style: TextStyle(fontFamily: 'mainFont', fontSize: 30),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Text(widget.location, style: TextStyle(fontSize: 20.0),),
+                  Text(widget.location,),
                   Row(
                     children: <Widget>[
                       IconButton(
@@ -186,7 +186,7 @@ Widget fancyAppBar(context,title, action) {
       style: TextStyle(
           color: Colors.black,
           fontFamily: 'mainFont',
-          fontSize: 24
+          fontSize: 30
       ),
     ),
     leading: GestureDetector(onTap: (){Navigator.pop(context);},child: Icon(Icons.arrow_back_ios,color: Colors.black,)),

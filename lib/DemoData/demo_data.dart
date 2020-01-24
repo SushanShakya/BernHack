@@ -47,9 +47,9 @@ class DemoData{
     Location(
       name: "Shankha Park",
       description: "Sankha Park is a park near Chappal Karkhana,The residents visit the park for picnicking, meeting and morning walk.The park is managed by Kathmandu Metropolitan City. This park is situated beside a busy ring road and offers solace to the many passers-by from the pollution and heat of the city.",
-      imageName: "ManjushreePark",
+      imageName: "ShankhPark",
       location: "Kathmandu",
-        images: ["ManjushreePark"]
+        images: ["ShankhPark"]
     ),
   ];
 

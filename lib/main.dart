@@ -1,7 +1,8 @@
 import 'package:bern_hack_app/DemoData/demo_data.dart';
 import 'package:bern_hack_app/Screens/Bookmarks.dart';
-import 'package:bern_hack_app/Screens/DetailScreen.dart';
 import 'package:flutter/material.dart';
+import 'Screens/DResort.dart';
+import 'Screens/description.dart';
 
 void main() => runApp(MaterialApp(
   title: "BernHack App",
@@ -23,6 +24,8 @@ class _HomeState extends State<Home> {
   final PageController ctrl = new PageController(viewportFraction: 0.8);
 
   List<Location> _activeTag;
+
+  bool isResort = false;
 
   int currentPage = 0;
 
@@ -71,6 +74,7 @@ class _HomeState extends State<Home> {
               _buildImageContainer(
                   context,
                   active: active,
+                images: _activeTag[index -1].images,
                 image: _activeTag[index-1].imageName,
                 title: _activeTag[index -1 ].name,
                 description: _activeTag[index -1 ].description,
@@ -108,6 +112,7 @@ class _HomeState extends State<Home> {
             onPressed: () {
               setState(() {
                 _activeTag = resorts;
+                isResort = true;
               });
             },
             child: Row(
@@ -125,7 +130,7 @@ class _HomeState extends State<Home> {
   Widget _buildImageContainer(context,
       {
         bool active,
-//        @required List<String> images,
+        @required List<String> images,
         String image,
         String title,
         String description,
@@ -143,12 +148,23 @@ class _HomeState extends State<Home> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DescriptionPage(
-                title: title,
-                description: description,
-                location: location,
-                image: image,
-              )
+              builder: (context) {
+                return
+                isResort?
+                ResortDescription(
+                  title: title,
+                  images: images,
+                  description: description,
+                  location: location,
+                ):
+                Details(
+                  image: image,
+                  title: title,
+                  description: description,
+                  location: location,
+
+                );
+              }
             )
         );
       },
@@ -187,3 +203,4 @@ class _HomeState extends State<Home> {
     );
   }
 }
+

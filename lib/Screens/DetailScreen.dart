@@ -1,14 +1,15 @@
 import 'package:bern_hack_app/CustomWidgets/myWidgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class DescriptionPage extends StatefulWidget {
 
   final String title;
   final String description;
   final String location;
-  final String image;
+  final List<String> images;
 
-  DescriptionPage({Key key,this.location, this.title ="Title", this.description ="Something", this.image}) : super(key: key);
+  DescriptionPage({Key key,this.location, this.title ="Title", this.description ="Something", this.images}) : super(key: key);
 
 
   @override
@@ -18,6 +19,7 @@ class DescriptionPage extends StatefulWidget {
 class _DescriptionPageState extends State<DescriptionPage> {
 
   bool isSaved = false;
+  DateTime date;
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +39,11 @@ class _DescriptionPageState extends State<DescriptionPage> {
       body: Stack(
         children: <Widget>[
           BackgroundSwiper(
-            images: widget.image,
+            images: widget.images,
+            count: widget.images.length,
           ),
           SingleChildScrollView(
             child: Container(
-//        height: MediaQuery.of(context).size.height - 150,
               padding: EdgeInsets.all(20.0),
               margin: EdgeInsets.fromLTRB(10.0, MediaQuery.of(context).size.height - 250, 10.0, 1.0),
               decoration: BoxDecoration(

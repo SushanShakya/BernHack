@@ -4,7 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 class BackgroundSwiper extends StatefulWidget {
 
   final int count;
-  final String images;
+  final List<String> images;
   BackgroundSwiper({this.count = 2,@required this.images});
 
   @override
@@ -17,11 +17,9 @@ class _BackgroundSwiperState extends State<BackgroundSwiper> {
 
   @override
   void initState() {
-//    if(widget.images.length > 1){
-//      setState(() {
-//        singleImage = false;
-//      });
-//    }
+    if(widget.images.length > 1){
+      singleImage = false;
+    }
     super.initState();
   }
 
@@ -43,7 +41,7 @@ class _BackgroundSwiperState extends State<BackgroundSwiper> {
         },
         loop: singleImage?false:true,
         itemBuilder: (context,index) {
-          return imageContainer("${widget.images}");
+          return imageContainer("${widget.images[index]}");
         },
       ),
     );

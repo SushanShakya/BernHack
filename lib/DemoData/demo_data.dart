@@ -35,21 +35,21 @@ class DemoData{
       description: "Located in the Chobhar gorge of the Kirtipur Municipality, Manjushree Park should be on your list of places to visit with family in Kirtipur, Nepal. Located near the Manjushree cave, this park is ideal for sightseeing and photography. Located on a small hill, this park offers visitors with panoramic views of the beautiful surroundings. The park is believed to be named after Manjushree, who was a Chinese saint. Do not give this park when you are in Nepal!",
       imageName: "ManjushreePark",
       location: "Chobhar",
-        images: ["BalajuWaterGarden"]
+        images: ["ManjushreePark"]
     ),
     Location(
       name: "Sikali",
       description: "Sikali Temple – Khokana, is one of the most beautiful temple built around 336 Nepal Sambat. The temple with open, clean and green meadow, surrounding hills and paddy fields gives the feel of Switzerland.“Locals believe that if we don’t sacrifice the animals on different occasions, misfortunes and tragedies will occur”Sikali Temple lies in the southern part of Kathmandu Valley at an approximate distance of 10 KM. The temple is located in an isolated place, outside of the main settlements, but the surrounding is heavenly.",
       imageName: "sikali",
       location: "Bhaisepati",
-        images: ["BalajuWaterGarden"]
+        images: ["sikali"]
     ),
     Location(
       name: "Shankha Park",
       description: "Sankha Park is a park near Chappal Karkhana,The residents visit the park for picnicking, meeting and morning walk.The park is managed by Kathmandu Metropolitan City. This park is situated beside a busy ring road and offers solace to the many passers-by from the pollution and heat of the city.",
       imageName: "ManjushreePark",
       location: "Kathmandu",
-        images: ["BalajuWaterGarden"]
+        images: ["ManjushreePark"]
     ),
   ];
 
@@ -59,14 +59,28 @@ class DemoData{
       description: 'Some random descriptions that we are seeing over here.... lol.... ya i know not that great right ?',
       location: 'location',
       imageName: 'sukuteBeach',
-        images: ["BalajuWaterGarden"]
+        images: ['sukuteBeach']
     ),
     Location(
       name: 'Something',
       description: 'Hey.... we got another random description here.... man we are getting a lot of random descriptions here lol',
       location: 'location',
       imageName: 'sikali',
-        images: ["BalajuWaterGarden"]
+        images: ['sikali']
+    ),
+    Location(
+      name: 'Nepal Cottage',
+      description: 'Hey.... we got another random description here.... man we are getting a lot of random descriptions here lol',
+      location: 'location',
+      imageName: 'NpCottage3',
+        images: ['NpCottage1','NpCottage2','NpCottage3','NpCottage4','NpCottage5',]
+    ),
+    Location(
+      name: 'Mountain Resort',
+      description: 'Hey.... we got another random description here.... man we are getting a lot of random descriptions here lol',
+      location: 'Nagarkot',
+      imageName: 'MtResort',
+        images: ['MtResort','MtResort1','MtResort2','MtResort3','MtResort4','MtResort5']
     ),
   ];
 

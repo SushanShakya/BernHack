@@ -35,7 +35,7 @@ class BookMarkedData{
     await db.insert('BookMarks', note);
   }
 
-  static Future deleteBookmark(String title) async {
-    await db.delete('BookMarks', where: 'title = ?', whereArgs: [title]);
+  static Future deleteBookmark() async {
+    await db.delete('BookMarks');
   }
 }

@@ -7,8 +7,8 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="bern_hack_app"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Destiny"
+        android:icon="@mipmap/main">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

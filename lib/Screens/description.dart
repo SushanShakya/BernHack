@@ -43,6 +43,7 @@ class _DetailsState extends State<Details> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: RaisedButton(
+            color: Colors.deepPurple,
             onPressed: () {
               showDatePicker(
                   context: context,
@@ -56,7 +57,7 @@ class _DetailsState extends State<Details> {
               });
 
             },
-            child: Text('Choose'),
+            child: Text('Choose', style: TextStyle(color: Colors.white),),
           ),
         ),
       ),
@@ -122,7 +123,7 @@ class _LocationDescriptionState extends State<LocationDescription> {
                           setState(() {
                             isClicked = (isClicked == true)? false: true;
                           });
-                          showSnackBar(context,"You Liked this");
+                          showSnackBar(context,(isClicked == false)?"You Unliked this":"You liked this");
                         },
                         icon: Icon((isClicked == true?Icons.favorite:Icons.favorite_border)),
                       ),
@@ -131,7 +132,7 @@ class _LocationDescriptionState extends State<LocationDescription> {
                           setState(() {
                             isSaved = (isSaved == true)? false: true;
                           });
-                          showSnackBar(context,"Added to Bookmarks");
+                          showSnackBar(context,isSaved?"Added to Bookmarks":"Unticked");
 
                           BookMarkedData.insertBookmark({
                             'title' : widget.title,
@@ -172,11 +173,12 @@ Widget imageContainer(image) {
   );
 }
 
-Widget showSnackBar(context,title) {
-  return SnackBar(
-    content: Text(title),
-    elevation: 10.0,
+void showSnackBar(context, text){
+  final snackBar = SnackBar(
+    content: Text(text),
+    duration: Duration(milliseconds: 500),
   );
+  Scaffold.of(context).showSnackBar(snackBar);
 }
 
 Widget fancyAppBar(context,title, action) {

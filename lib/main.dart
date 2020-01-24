@@ -1,13 +1,19 @@
 import 'package:bern_hack_app/DemoData/demo_data.dart';
 import 'package:bern_hack_app/Screens/Bookmarks.dart';
 import 'package:flutter/material.dart';
-import 'DemoData/database.dart';
 import 'Screens/DResort.dart';
 import 'Screens/description.dart';
 
 void main() => runApp(MaterialApp(
   title: "BernHack App",
   debugShowCheckedModeBanner: false,
+//  theme: ThemeData(
+//    buttonTheme: ButtonThemeData(
+//      shape: BeveledRectangleBorder(
+//        borderRadius: BorderRadius.circular(20.0)
+//      )
+//    )
+//  ),
   home: Home(),
 ));
 
@@ -123,50 +129,19 @@ class _HomeState extends State<Home> {
                   color: isResort?Colors.teal:Colors.transparent
               ),
           SizedBox(height: 20.0,),
-          FutureBuilder(
-            future: BookMarkedData.getBookmarkedList(),
-            builder: (context, snapshot) {
-              if(snapshot.connectionState == ConnectionState.done){
-                final fish = snapshot.data;
-                List protoImages = [];
-                List protoTitles = [];
-                if(fish.length != 0) {
-                  for(int i = 0; i< fish.length; i++) {
-                    protoImages.add(fish[i]['image']);
-                    protoTitles.add(fish[i]['title']);
-                  }
-                }
-                return
-                  (fish.length != 0)?
-                  _makeButton(
-                    color: Colors.transparent,
-                    image: 'bookmarks',
-                    text: "#BookMarks",
-                      onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Bookmarks(
-                                image: protoImages,
-                                count: fish.length,
-                                title: protoTitles,
-                              )
-                          )
-                      );
-                    }
-                  ):
-                _makeButton(
+              _makeButton(
                   image: "bookmarks",
                   color: Colors.transparent,
                   text: "#BookMarks",
-                  onPressed: () {}
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Bookmarks()
+                        )
+                    );
+                  }
                 )
-                ;
-              }
-
-              return CircularProgressIndicator();
-            },
-          )
             ],
           ),
         ],

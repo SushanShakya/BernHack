@@ -66,6 +66,7 @@ class _ResortDescriptionState extends State<ResortDescription> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: RaisedButton(
+            color: Colors.deepPurple,
             onPressed: () {
               showDatePicker(
                   context: context,
@@ -78,7 +79,7 @@ class _ResortDescriptionState extends State<ResortDescription> {
                 });
               });
             },
-            child: Text('Choose'),
+            child: Text('Choose', style: TextStyle(color: Colors.white),),
           ),
         ),
       ),

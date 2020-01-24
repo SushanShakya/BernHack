@@ -1,16 +1,13 @@
-import 'package:bern_hack_app/CustomWidgets/myWidgets.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_swiper/flutter_swiper.dart';
 
 class DescriptionPage extends StatefulWidget {
 
   final String title;
   final String description;
   final String location;
-  final List<String> images;
+  final String images;
 
   DescriptionPage({Key key,this.location, this.title ="Title", this.description ="Something", this.images}) : super(key: key);
-
 
   @override
   _DescriptionPageState createState() => _DescriptionPageState();
@@ -37,9 +34,14 @@ class _DescriptionPageState extends State<DescriptionPage> {
       ),
       body: Stack(
         children: <Widget>[
-          BackgroundSwiper(
-            images: widget.images,
-            count: widget.images.length,
+          Container(
+            height: 450.0,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/${widget.images}.jpg'),
+                    fit: BoxFit.cover
+                )
+            ),
           ),
           SingleChildScrollView(
             child: Container(

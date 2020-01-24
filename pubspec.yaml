@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_swiper: any
   sqflite: any
+  flushbar: ^1.9.1
 
 dev_dependencies:
   flutter_test:

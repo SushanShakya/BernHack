@@ -16,6 +16,9 @@ class DescriptionPage extends StatefulWidget {
 }
 
 class _DescriptionPageState extends State<DescriptionPage> {
+
+  bool isSaved = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +31,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
           onTap: (){
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back_ios),
+          child: Icon(Icons.arrow_back_ios, color: Colors.black,),
         ),
       ),
       body: Stack(
@@ -36,10 +39,46 @@ class _DescriptionPageState extends State<DescriptionPage> {
           BackgroundSwiper(
             images: widget.image,
           ),
-          DescriptionContainer(
-            title: widget.title,
-            location: widget.location,
-            description: widget.description,
+          SingleChildScrollView(
+            child: Container(
+//        height: MediaQuery.of(context).size.height - 150,
+              padding: EdgeInsets.all(20.0),
+              margin: EdgeInsets.fromLTRB(10.0, MediaQuery.of(context).size.height - 250, 10.0, 1.0),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(50.0), topRight: Radius.circular(50.0)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 15.0,
+                    )
+                  ]
+              ),
+              child: Column(
+                children: <Widget>[
+                  Text(widget.title, style: Theme.of(context).textTheme.title,textAlign: TextAlign.left,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(widget.location),
+                      IconButton(
+                        onPressed: () {
+                          print("presseed");
+                          setState(() {
+                            isSaved = (isSaved == true)? false:true;
+                          });
+                        },
+                        icon: Icon((isSaved == true)?Icons.favorite:Icons.favorite_border),
+                      )
+                    ],
+                  ),
+                  Divider(
+                    thickness: 2.0,
+                  ),
+                  Text("        ${widget.description}")
+                ],
+              ),
+            ),
           )
         ],
       ),

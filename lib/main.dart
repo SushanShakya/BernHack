@@ -1,4 +1,5 @@
 import 'package:bern_hack_app/DemoData/demo_data.dart';
+import 'package:bern_hack_app/Screens/Bookmarks.dart';
 import 'package:bern_hack_app/Screens/DetailScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +42,16 @@ class _HomeState extends State<Home> {
         title: Text("Choose Your Destination", style: TextStyle(color:Colors.black,fontFamily: 'mainFont'),),
         centerTitle: true,
         elevation: 0.0,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => Bookmarks()
+              ));
+            },
+            icon: Icon(Icons.book, color: Colors.black,),
+          )
+        ],
         backgroundColor: Colors.white,
       ),
       body: PageView.builder(
@@ -85,15 +96,26 @@ class _HomeState extends State<Home> {
                 _activeTag = picnicSpots;
               });
             },
-            child: Text('PicnicSpots'),
+            child: Row(
+              children: <Widget>[
+                Image.asset('assets/images/picnicSpots.png', height: 70, width: 70,),
+                Text('PicnicSpots'),
+              ],
+            ),
           ),
+          SizedBox(height: 20.0,),
           MaterialButton(
             onPressed: () {
               setState(() {
                 _activeTag = resorts;
               });
             },
-            child: Text('Resorts'),
+            child: Row(
+              children: <Widget>[
+                Image.asset('assets/images/chill.png', height: 70, width: 70,),
+                Text('Resorts'),
+              ],
+            ),
           )
         ],
       ),

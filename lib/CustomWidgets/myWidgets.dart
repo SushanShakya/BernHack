@@ -58,7 +58,7 @@ class _BackgroundSwiperState extends State<BackgroundSwiper> {
   }
 }
 
-class DescriptionContainer extends StatelessWidget {
+class DescriptionContainer extends StatefulWidget {
 
   final String title;
   final String location;
@@ -67,12 +67,19 @@ class DescriptionContainer extends StatelessWidget {
   const DescriptionContainer({Key key, this.title='Some Title', this.location = 'Location', this.description="Some Description"}) : super(key: key);
 
   @override
+  _DescriptionContainerState createState() => _DescriptionContainerState();
+}
+
+class _DescriptionContainerState extends State<DescriptionContainer> {
+  @override
   Widget build(BuildContext context) {
+
+    bool isSaved = false;
 
     return SingleChildScrollView(
       child: Container(
-        height: MediaQuery.of(context).size.height - 150,
-        padding: EdgeInsets.all(30.0),
+//        height: MediaQuery.of(context).size.height - 150,
+        padding: EdgeInsets.all(20.0),
         margin: EdgeInsets.fromLTRB(10.0, MediaQuery.of(context).size.height - 250, 10.0, 1.0),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -85,23 +92,27 @@ class DescriptionContainer extends StatelessWidget {
           ]
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(title, style: Theme.of(context).textTheme.title,textAlign: TextAlign.left,),
+            Text(widget.title, style: Theme.of(context).textTheme.title,textAlign: TextAlign.left,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(location),
+                Text(widget.location),
                 IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.favorite_border),
+                  onPressed: () {
+                    print("presseed");
+                    setState(() {
+                      isSaved = (isSaved == true)? false:true;
+                    });
+                  },
+                  icon: Icon((isSaved == true)?Icons.favorite:Icons.favorite_border),
                 )
               ],
             ),
             Divider(
               thickness: 2.0,
             ),
-            Text("        $description")
+            Text("        ${widget.description}")
           ],
         ),
       ),

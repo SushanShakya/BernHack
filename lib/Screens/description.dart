@@ -1,6 +1,7 @@
+import 'package:bern_hack_app/DemoData/database.dart';
 import 'package:flutter/material.dart';
 
-class Details extends StatelessWidget {
+class Details extends StatefulWidget {
 
   final String title;
   final String image;
@@ -10,19 +11,29 @@ class Details extends StatelessWidget {
   Details({Key key,this.location, @required this.title, @required this.image, this.description = ''}) : super(key: key);
 
   @override
+  _DetailsState createState() => _DetailsState();
+}
+
+class _DetailsState extends State<Details> {
+
+  DateTime _pickedDate = DateTime.now();
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: fancyAppBar(context,title,Icon(Icons.ac_unit)),
+      appBar: fancyAppBar(context,widget.title,Icon(Icons.ac_unit)),
       body:
          Stack(
               children: <Widget>[
-                imageContainer(image),
+                imageContainer(widget.image),
 
                 LocationDescription(
-                  title: title,
-                  description: description,
-                  location: location,
-                  topMargin: 400.0,
+                  title: widget.title,
+                  image: widget.image,
+                  pickedDate: "${_pickedDate.year}-${_pickedDate.month}-${_pickedDate.day}",
+                  description: widget.description,
+                  location: widget.location,
+                  topMargin: MediaQuery.of(context).size.height - 250,
                 )
 
               ],
@@ -32,7 +43,19 @@ class Details extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(DateTime.now().year),
+                  lastDate: DateTime(DateTime.now().year + 5)
+              ).then((date){
+                setState(() {
+                  _pickedDate = date;
+                });
+              });
+
+            },
             child: Text('Choose'),
           ),
         ),
@@ -46,9 +69,11 @@ class LocationDescription extends StatefulWidget {
   final title;
   final description;
   final location;
+  final image;
+  final pickedDate;
   final double topMargin;
 
-  LocationDescription({Key key, @required this.title, this.description = '',this.location = '', this.topMargin = 400.0}) : super(key: key);
+  LocationDescription({Key key,this.pickedDate,this.image, @required this.title, this.description = '',this.location = '', this.topMargin = 400.0}) : super(key: key);
 
   @override
   _LocationDescriptionState createState() => _LocationDescriptionState();
@@ -97,6 +122,7 @@ class _LocationDescriptionState extends State<LocationDescription> {
                           setState(() {
                             isClicked = (isClicked == true)? false: true;
                           });
+                          showSnackBar(context,"You Liked this");
                         },
                         icon: Icon((isClicked == true?Icons.favorite:Icons.favorite_border)),
                       ),
@@ -104,6 +130,14 @@ class _LocationDescriptionState extends State<LocationDescription> {
                         onPressed: () {
                           setState(() {
                             isSaved = (isSaved == true)? false: true;
+                          });
+                          showSnackBar(context,"Added to Bookmarks");
+
+                          BookMarkedData.insertBookmark({
+                            'title' : widget.title,
+                            'image' : widget.image,
+                            'description' : widget.description,
+                            'location' : widget.location,
                           });
                         },
                         icon: Icon((isSaved == true?Icons.bookmark:Icons.bookmark_border)),
@@ -115,7 +149,9 @@ class _LocationDescriptionState extends State<LocationDescription> {
               ),
               Divider(thickness: 4,),
               SizedBox(height: 10.0,),
-              Text("         ${widget.description}", style: TextStyle(fontSize: 20.0),textAlign: TextAlign.justify,)
+              Text("         ${widget.description}", style: TextStyle(fontSize: 20.0),textAlign: TextAlign.justify,),
+              SizedBox(height: 20.0,),
+              Text("Picked Date : ${widget.pickedDate}", style: Theme.of(context).textTheme.title,)
             ],
           ),
         ),

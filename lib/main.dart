@@ -1,6 +1,7 @@
 import 'package:bern_hack_app/DemoData/demo_data.dart';
 import 'package:bern_hack_app/Screens/Bookmarks.dart';
 import 'package:flutter/material.dart';
+import 'DemoData/database.dart';
 import 'Screens/DResort.dart';
 import 'Screens/description.dart';
 
@@ -42,7 +43,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Choose Your Destination", style: TextStyle(color:Colors.black,fontFamily: 'mainFont'),),
+        title: Text(
+          isResort?"Resorts":"Picnic Spots",
+          style: TextStyle(fontSize: 26.0,color:Colors.black,fontFamily: 'mainFont'),),
         centerTitle: true,
         elevation: 0.0,
         actions: <Widget>[
@@ -94,36 +97,91 @@ class _HomeState extends State<Home> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          MaterialButton(
-            onPressed: () {
-              setState(() {
-                _activeTag = picnicSpots;
-              });
-            },
-            child: Row(
-              children: <Widget>[
-                Image.asset('assets/images/picnicSpots.png', height: 70, width: 70,),
-                Text('PicnicSpots'),
-              ],
-            ),
-          ),
+          Text("Choose Your Destination",style: TextStyle(fontSize: 24,color:Colors.black,fontFamily: 'mainFont'),),
           SizedBox(height: 20.0,),
-          MaterialButton(
-            onPressed: () {
-              setState(() {
-                _activeTag = resorts;
-                isResort = true;
-              });
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _makeButton(
+                image: 'picnicSpots',
+                  text: "#PicnicSpots",
+                  onPressed: () {
+                    setState(() {
+                      _activeTag = picnicSpots;
+                      isResort = false;
+                    });
+                  }
+              ),
+              SizedBox(height: 20.0,),
+              _makeButton(
+                image: 'chill',
+                  text: "#Resorts",
+                  onPressed: () {
+                    setState(() {
+                      _activeTag = resorts;
+                      isResort = true;
+                    });
+                  }
+              ),
+          SizedBox(height: 20.0,),
+          FutureBuilder(
+            future: BookMarkedData.getBookmarkedList(),
+            builder: (context, snapshot) {
+              if(snapshot.connectionState == ConnectionState.done){
+                final fish = snapshot.data;
+                List protoImages = [];
+                List protoTitles = [];
+                if(fish.length != 0) {
+                  for(int i = 0; i< fish.length; i++) {
+                    protoImages.add(fish[i]['image']);
+                    protoTitles.add(fish[i]['title']);
+                  }
+                }
+                return
+                  (fish.length != 0)?
+                  _makeButton(
+                    image: 'bookmarks',
+                    text: "#BookMarks",
+                      onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Bookmarks(
+                                image: protoImages,
+                                count: fish.length,
+                                title: protoTitles,
+                              )
+                          )
+                      );
+                    }
+                  ):
+                _makeButton(
+                  image: "bookmarks",
+                  text: "#BookMarks",
+                  onPressed: () {}
+                )
+                ;
+              }
+
+              return CircularProgressIndicator();
             },
-            child: Row(
-              children: <Widget>[
-                Image.asset('assets/images/chill.png', height: 70, width: 70,),
-                Text('Resorts'),
-              ],
-            ),
           )
+            ],
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _makeButton({String image, String text, onPressed}) {
+    return MaterialButton(
+        onPressed: onPressed,
+        child: Row(
+          children: <Widget>[
+            Image.asset('assets/images/$image.png', height: 70,width: 70,),
+            Text(text)
+          ],
+        )
     );
   }
 

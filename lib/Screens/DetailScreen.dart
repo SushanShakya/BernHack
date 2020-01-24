@@ -1,6 +1,6 @@
 import 'package:bern_hack_app/CustomWidgets/myWidgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+//import 'package:flutter_swiper/flutter_swiper.dart';
 
 class DescriptionPage extends StatefulWidget {
 
@@ -19,7 +19,6 @@ class DescriptionPage extends StatefulWidget {
 class _DescriptionPageState extends State<DescriptionPage> {
 
   bool isSaved = false;
-  DateTime date;
 
   @override
   Widget build(BuildContext context) {

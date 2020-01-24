@@ -20,6 +20,7 @@ class _ResortDescriptionState extends State<ResortDescription> {
 
   int _currentIndex = 0;
   final SwiperController _swiperController = SwiperController();
+  DateTime _pickedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +54,10 @@ class _ResortDescriptionState extends State<ResortDescription> {
             LocationDescription(
               title: "${widget.title}",
               description:"${widget.description}",
+              image: widget.images[0],
+              pickedDate: "${_pickedDate.year}-${_pickedDate.month}-${_pickedDate.day}",
               location: widget.location,
-              topMargin: MediaQuery.of(context).size.height /1.8,
+              topMargin: MediaQuery.of(context).size.height - 250,
             )
           ],
         ),
@@ -63,7 +66,18 @@ class _ResortDescriptionState extends State<ResortDescription> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(DateTime.now().year),
+                  lastDate: DateTime(DateTime.now().year + 5)
+              ).then((date){
+                setState(() {
+                  _pickedDate = date;
+                });
+              });
+            },
             child: Text('Choose'),
           ),
         ),

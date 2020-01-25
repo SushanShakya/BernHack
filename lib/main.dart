@@ -7,13 +7,9 @@ import 'Screens/description.dart';
 void main() => runApp(MaterialApp(
   title: "BernHack App",
   debugShowCheckedModeBanner: false,
-//  theme: ThemeData(
-//    buttonTheme: ButtonThemeData(
-//      shape: BeveledRectangleBorder(
-//        borderRadius: BorderRadius.circular(20.0)
-//      )
-//    )
-//  ),
+  theme: ThemeData(
+    primarySwatch: Colors.deepPurple
+  ),
   home: Home(),
 ));
 

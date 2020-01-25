@@ -92,7 +92,7 @@ class DemoData{
     Location(
       name: 'Sukute Beach',
       description: 'Wanna Chill Out ?? Sukute beach might just be the spot for you.\n Bring your spouse and chillax here.',
-      location: 'location',
+      location: 'Chaksibari Marg',
       imageName: 'sukuteBeach',
         images: ['sukuteBeach','sukuteBeach1']
     ),
@@ -100,7 +100,7 @@ class DemoData{
       name: 'Nepal Cottage',
       description: 'Are you looking for a peaceful area to take a break from your boring life? '
           'Try this resort and chillax',
-      location: 'location',
+      location: 'Paknajol Marg',
       imageName: 'NpCottage3',
         images: ['NpCottage1','NpCottage2','NpCottage3','NpCottage4','NpCottage5',]
     ),

@@ -1,16 +1,17 @@
-# bern_hack_app
+# Destiny
 
-A new Flutter project.
+## Landing Page
 
-## Getting Started
+<img src = "Screenshots/choosing.jpg", height = "200">
 
-This project is a starting point for a Flutter application.
+## Views
 
-A few resources to get you started if this is your first Flutter project:
+<img src = "Screenshots/view.jpg", height = "200">
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Desciption
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src = "Screenshots/description.jpg", height = "200">
+
+## Bookmarks
+
+<img src = "Screenshots/bookmarks.jpg", height = "200">
